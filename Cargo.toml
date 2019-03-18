@@ -1,7 +1,7 @@
 [package]
 name = "salad"
-description = "salad generates random passphrases from a word-list for *nix systems."
-version = "0.1.0"
+description = "Salad generates random passphrases from a word-list for *nix systems"
+version = "0.1.1"
 authors = ["crawlingChaos"]
 edition = "2018"
 license = "AGPL-3.0-or-later"

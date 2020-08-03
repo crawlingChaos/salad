@@ -15,35 +15,35 @@ const USAGE: &'static str = "USAGE: salad [OPTION]...
 
 Generate a passphrase from a file containing a list of words.
 
-EXAMPLE
+EXAMPLE  
 salad -M floyd -min 4 -max 8
 
-DEFAULTS
+DEFAULTS  
 -m -n 6 -max 12 -min 5
 
-OPTIONS
--h, --help
+OPTIONS  
+-h, --help  
   Display usage help
 
--max N
+-max N  
   Ignore words larger than N. N must be less than 256.
 
--min N
+-min N  
   Ignore words smaller than N. N must be less than 256.
 
--n N
+-n N  
   Generate a passphrase with N words. N must be less than 256.
 
--r
+-r  
   Generate a passphrase of random words. Mutually exclusive with -m and -M.
 
--m
+-m  
   Generate a passphrase using a ramdomly chosen mnemonic. Mutually exclusive with -r and -M.
 
--M MNEMONIC
+-M MNEMONIC  
   Generate a passphrase using the specified mnemonic. Mutually exclusive with -r and -m. The option -n is ignored if this is used.
 
--w FILE
+-w FILE  
   Use a custom word-file. If no custom word-file is provided, salad will look in **$HOME/.salad/words** first and **/etc/salad/words** second. 
 ";
 

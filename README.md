@@ -4,7 +4,7 @@ Salad is a random passphrase generator written in Rust for *nix systems.
 
 It is Free Software and released under the [GNU Affero General Public License V3](http://www.gnu.org/licenses/agpl.html).
 
-Salad's goal is to provide a robust passphrase generator to users who want strong security. It is intended to provide flexible passphrase generation without requiring multiple specialized word lists by dynamically choosing words that match any desired criteria. It will also provide an estimate of the amount of entropy in a given passphrase, controlled by the word list and the passphrase settings.
+Salad's goal is to provide a robust passphrase generator to users who want strong security. It is intended to provide flexible passphrase generation without requiring multiple specialized word lists by dynamically choosing words that match any desired criteria.
 
 
 ## Installation
@@ -14,19 +14,59 @@ Salad is still in a very early state. As such there is no installer or distro sp
 
 ## Dependencies
 
-Just the Rust standard library and a newline delimited text file to use as a word list. Salad comes with a large word list, although the words were chosen to maximize entropy rather than be particularly easy to memorize or spell. Using a custom word list with Salad is easy.
+Just the Rust standard library and a newline delimited text file to use as a word list. Salad comes with a large word list, but using a custom word list with Salad is easy.
+
+
+## Features
+
+Salad gives you three ways of generating a random passphrase. Each method will allow you to choose the number of words in your passphrase, and the maximum and minimum length of those words.
+
+**Method 1: Random**
+Randomly selected words (use the -r option)
+
+**Method 2: Dynamic Mnemonic**
+A random word for use as a menmonic will be chosen that contains the number of characters you want in your passphrase. Then a random word beginning with each letter in that mnemonic will be chosen to form your passphrase (use the -m option)
+
+**Method 3: Fixed Mnemonic**
+The same as #2 except using a menmonic specified on the commandline (use the -M option)
+
+Salad uses rejection sampling to select random words from a file containing a list of words. This provides a uniformly random sampling of words, without requiring a fixed size word list. The word list included with salad contains only lower case ascii letters, but files containing "words" consisting of any unicode characters should work as long as there is one word per line (blank lines are ignored and will not affect output).
 
 
 ## Usage
 
-Currently Salad will accept the name of a word list file on the command line. Otherwise it will look in **$HOME/.salad/words** first and **/etc/salad/words** second. 
+salad [OPTION]...
 
+Generate a passphrase from a file containing a list of words.
 
-## Configuration
+EXAMPLE
+salad -M floyd -min 4 -max 8
 
-Soon Salad will offer user selectable settings such as number of words in the passphrase, and minimum and maximum acceptable word length. Future plans are for more robust filtering based on punctuation, numbers, and perhaps more complex features. Currently settings are defaulted to 6 words with a minimum of 5 and maximum of 10 charatcers per word. When settings are available, they will be able to be set via commandline, environment variables and both system and user prefs files.
+DEFAULTS
+-m -n 6 -max 12 -min 5
 
+OPTIONS
+-h, --help
+  Display usage help
 
-## Limitations
+-max N
+  Ignore words larger than N. N must be less than 256.
 
-Currently there are no user selectable settings other than choosing the word list file via command line argument.
+-min N
+  Ignore words smaller than N. N must be less than 256.
+
+-n N
+  Generate a passphrase with N words. N must be less than 256.
+
+-r
+  Generate a passphrase of random words. Mutually exclusive with -m and -M.
+
+-m
+  Generate a passphrase using a ramdomly chosen mnemonic. Mutually exclusive with -r and -M.
+
+-M MNEMONIC
+  Generate a passphrase using the specified mnemonic. Mutually exclusive with -r and -m. The option -n is ignored if this is used.
+
+-w FILE
+  Use a custom word-file. If no custom word-file is provided, salad will look in **$HOME/.salad/words** first and **/etc/salad/words** second. 
+

@@ -68,5 +68,5 @@ OPTIONS
   Generate a passphrase using the specified mnemonic. Mutually exclusive with -r and -m. The option -n is ignored if this is used.
 
 -w FILE  
-  Use a custom word-file. If no custom word-file is provided, salad will look in **$HOME/.salad/words** first and **/etc/salad/words** second. 
+  Use a custom word-file. If no custom word-file is provided, salad will look in $HOME/.salad/words first and /etc/salad/words second. 
 

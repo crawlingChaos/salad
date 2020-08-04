@@ -25,7 +25,7 @@ Salad gives you three ways of generating a random passphrase. Each method will a
 Randomly selected words (use the -r option)
 
 **Method 2: Dynamic Mnemonic**  
-A random word for use as a mnemonic will be chosen that contains the number of characters you want in your passphrase. Then a random word beginning with each letter in that mnemonic will be chosen to form your passphrase (use the -m option)
+A random word for use as a mnemonic will be chosen that contains a number of characters equal to the number of words you want in your passphrase. Then a random word beginning with each letter in that mnemonic will be chosen to form your passphrase (use the -m option)
 
 **Method 3: Fixed Mnemonic**  
 The same as #2 except using a mnemonic specified on the commandline (use the -M option)
